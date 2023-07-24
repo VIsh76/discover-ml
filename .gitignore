@@ -1,5 +1,10 @@
+# DATA :
 *.yaml
 *.rc
-*.ipynb
 
 *cap_restart
+*._*
+
+# PYTHON :
+__pycache__
+*.ipynb

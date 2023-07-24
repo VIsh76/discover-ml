@@ -5,6 +5,7 @@ import shutil
 import os
 
 
+
 def main(folder_to_reset, folder_clean):
     """Reset folder_to_reset from parameter from folder_clean
     Erase _rst files, copy them from folder_clean to folder_to_reset
@@ -15,16 +16,16 @@ def main(folder_to_reset, folder_clean):
         folder_clean (str): intial folder untouched
     """
     # REMOVE ALL RST files first :
-    for rst in os.path.lstdir(folder_to_reset):
+    for rst in os.listdir(folder_to_reset):
         if rst[-4:] == '_rst':
-            print(f'Remove {rst}')
+            print(f"Remove {rst}")
             os.remove(f'{folder_to_reset}/{rst}')   
-    for rst in os.path.lstdir(folder_clean):
+    for rst in os.listdir(folder_clean):
         if rst[-4:] == '_rst':
             print(f'Copy {rst}')
             shutil.copy(f'{folder_clean}/{rst}' , 
                         f'{folder_to_reset}/{rst}')
-    for file in ['HISTORY.rc', 'CAP.rc', 'cap_restart.rc']:
+    for file in ['HISTORY.rc', 'CAP.rc', 'cap_restart']:
             print(f'Copy {file}')
             shutil.copy(f'{folder_clean}/{file}' , 
                         f'{folder_to_reset}/{file}')        

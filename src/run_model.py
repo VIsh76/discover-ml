@@ -4,7 +4,11 @@ import warnings
 import shutil
 
 def line_nophysic_check(line):
-    """Check if physic is deactivated"""
+    """
+    Check if physic is deactivated
+    Return False if no impact
+    Return True
+    """
     if len(line) < 1:
         return False
     elif line[0]=='#':
@@ -23,7 +27,7 @@ def check(file):
             return False
     return True
 
-def main(agcm_file_path, physic):
+def main(agcm_file_path, run_file, physic):
     """Copy the corresponding AGCM_{phys}.rc file to AGCM.rc,
     check if it has corresponding physic.
     Then Run gcm_run.j from the file using either AGCM_r
@@ -34,19 +38,19 @@ def main(agcm_file_path, physic):
     """
     has_physic = check(agcm_file_path)
     if has_physic != physic:
-        if has_physic:
+        if physic:
             warnings.warn("Run file doesn't have physic when it should")  
         else:
             warnings.warn("Run file have physic activated when it shouldn't")  
-    assert(has_physic==physic) 
+        assert(has_physic==physic) 
 
     # COPY THE AGCM file :
     agcm_orig_file = f"{os.path.dirname(agcm_file_path)}/AGCM.rc"
     shutil.copyfile(agcm_file_path, agcm_orig_file)
 
     if physic:
-        print(f"running with physic: .{agcm_file_path}")
+        print(f"running with physic: .{run_file}")
     else:
-        print(f"running without physic: .{agcm_file_path}")
-    os.system(f".{agcm_file_path}")
+        print(f"running without physic: .{run_file}")
+    os.system(f"{run_file}")
     return 

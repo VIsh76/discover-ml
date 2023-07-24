@@ -9,7 +9,7 @@ import os
 
 
 
-def main(input_path, output_path, list_of_vars):
+def main(list_of_vars, input_path, output_path):
     """Copy the variables from input_path to output_path, 
     input path and out path must be formatted with the corresponding
     variable. The file must correspond to HISTORY.rc
@@ -24,8 +24,12 @@ def main(input_path, output_path, list_of_vars):
         input_file = input_path.format(var=var)
         output_file = output_path.format(var=var)
         output_folder = os.path.dirname(output_file)
-
-        os.makedirs(f"{output_folder}", exist_ok=True)
-        print(f"Moving file from {input_file} to {output_file}")
-        os.rename(input_file, output_file)
-        print("- successful - ")
+        if not os.path.exists(output_folder):
+            print(f"Making {output_folder}")
+            os.makedirs(output_folder, exist_ok=True)
+        if os.path.exists(input_file):            
+            print(f"Moving file from {input_file} to {output_file}")
+            os.rename(input_file, output_file)
+            print("- successful - ")
+        else:
+            warnings.warn(f"File {input_file} not found - skip {var}")
