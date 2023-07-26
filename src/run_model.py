@@ -36,6 +36,14 @@ def main(agcm_file_path, run_file, physic):
         file_path (str): path of the agcm file with or without physic
         physic (bool): boolean indicating if physic must be present or not
     """
+    f = open('templates/AGCM_template.rc')
+    text = f.read()
+    if physic:
+        text=text.format(run_physic="#RUN_PHYSICS: .false.")
+    else:
+        text=text.format(run_physic="RUN_PHYSICS: .false.")
+    f.close() 
+    
     has_physic = check(agcm_file_path)
     if has_physic != physic:
         if physic:
@@ -43,11 +51,11 @@ def main(agcm_file_path, run_file, physic):
         else:
             warnings.warn("Run file have physic activated when it shouldn't")  
         assert(has_physic==physic) 
-
-    # COPY THE AGCM file :
-    agcm_orig_file = f"{os.path.dirname(agcm_file_path)}/AGCM.rc"
-    shutil.copyfile(agcm_file_path, agcm_orig_file)
-
+    # Save Template
+    print(f"Saving {agcm_file_path} with physic {physic}")
+    outfile = open(agcm_file_path, "w")
+    outfile.write(text)
+    outfile.close()   
     if physic:
         print(f"running with physic: .{run_file}")
     else:
