@@ -2,6 +2,7 @@
 # Restart from previous moment ?
 # (tar.z)
 import shutil
+import datetime
 import os
 
 
@@ -14,6 +15,7 @@ def main(folder_experiment, folder_to_save):
         folder_to_save (str): where to save
     """
     # Save restart files to the folder:
+     
     if not os.path.exists(folder_to_save):
         print(f"CREATING {folder_to_save}")
         os.makedirs(folder_to_save)
@@ -26,7 +28,7 @@ def main(folder_experiment, folder_to_save):
             shutil.copy(f'{folder_experiment}/{rst}' , 
                         f'{folder_to_save}/{rst}')
     # Save History, Cap Restart, Cap rc
-    for file in ['HISTORY.rc', 'CAP.rc', 'cap_restart']:
+    for file in ['cap_restart']:
             print(f'Copy {file}')
             shutil.copy(f'{folder_experiment}/{file}' , 
                         f'{folder_to_save}/{file}')        

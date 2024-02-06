@@ -23,7 +23,7 @@ def main(caprc_path, beg_date_time, delta_time, time_format, heartbeat_dt=450, j
     f = open('templates/CAP_template.rc')
     text = f.read()
     text=text.format(HEARTBEAT_DT=heartbeat_dt, 
-                     BEG_DATE=beg_date_str, 
+                     #BEG_DATE=beg_date_str, 
                      JOB_SGMT=job_sgmt, 
                      END_DATE=end_date_str)
     f.close()
@@ -36,6 +36,6 @@ def main(caprc_path, beg_date_time, delta_time, time_format, heartbeat_dt=450, j
 
 if __name__=='__main__':
     l = main('cap_test.rc', 
-            beg_date_time=datetime.datetime.strptime('20000401 210000', "%Y%m%d %H%M%S"), 
+            beg_date_time=datetime.datetime.strptime('20000414 210000', "%Y%m%d %H%M%S"), 
             delta_time=datetime.timedelta(seconds=450),
             time_format= "%Y%m%d %H%M%S")

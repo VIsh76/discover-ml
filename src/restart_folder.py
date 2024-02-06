@@ -16,6 +16,7 @@ def main(folder_to_reset, folder_clean):
         folder_clean (str): intial folder untouched
     """
     # REMOVE ALL RST files first :
+    print(f"LOADING FRON {folder_clean}")
     for rst in os.listdir(folder_to_reset):
         if rst[-4:] == '_rst':
             print(f"Remove {rst}")
@@ -25,7 +26,7 @@ def main(folder_to_reset, folder_clean):
             print(f'Copy {rst}')
             shutil.copy(f'{folder_clean}/{rst}' , 
                         f'{folder_to_reset}/{rst}')
-    for file in ['HISTORY.rc', 'CAP.rc', 'cap_restart']:
+    for file in ['cap_restart']:
             print(f'Copy {file}')
             shutil.copy(f'{folder_clean}/{file}' , 
                         f'{folder_to_reset}/{file}')        

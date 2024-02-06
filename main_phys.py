@@ -1,11 +1,13 @@
+# Only runs both the physic and the dynamic 
 from src import restart_folder, run_model, save_collection, save_restart_state, restart_change_dates
 import datetime
 import warnings
 import os
 
+time_format= "%Y%m%d %H%M%S"
+
 # Parameters are here (should be cleanner)
 ## folders:
-
 _full_path = "/Users/vmarchai/Volumes/nobackup/experiments"
 _full_path = "/discover/nobackup/vmarchai/experiments"
 experiment_folder = f"{_full_path}/ML_0"
@@ -21,18 +23,18 @@ run_file_path = f"{experiment_folder}/gcm_run.j"
 cap_restart_path = f"{experiment_folder}/cap_restart"
 cap_rc_path = f"{experiment_folder}/CAP.rc"
 
+
 ## Variables saving
 list_of_vars = ['ml_input', 'ml_output']
 ## Heart_beat
 heart_beat_dt = 450
-time_format= "%Y%m%d %H%M%S"
-## Pre launch T:
-T = datetime.timedelta(seconds=heart_beat_dt)
+max_runs = 100 # about two days with 15 min
+output_prefix = '../ML_DATA/latlon_test_15min' # where the data is saved
 
 def format_history_path(intial_folder, save_folder, end_date, var):
     return f"{intial_folder}/{save_folder}/{var}/{end_date.strftime('%Y%m')}/{experiment_name}.{var}.{end_date.strftime('%Y%m%d_%H%Mz')}.nc4"
-    
-def block(T, 
+
+def block(T,
           experiment_folder, 
           reloader_folder, 
           run_physic,
@@ -74,8 +76,7 @@ def get_caprestart_date(cap_restart_file):
     date_beg = datetime.datetime.strptime(date_str, "%Y%m%d %H%M%S")
     return date_beg
 
-max_runs = 90 # about a day
-output_prefix = '../ML_DATA/c48_test_full_WITH_RAD' # where the data is saved
+
 
 if __name__ == '__main__':
     warnings.warn("HISTORY.rc file date must have '%Y%m%d %H%M%S' format")
@@ -85,27 +86,10 @@ if __name__ == '__main__':
             reloader_folder = initial_folder # The first time we reload the intial folder (unless we want longer)
         else:
             reloader_folder = restarts_folder # Otherwise we reload from the restart folder with physics
-        print("-------------------------- Preparation-------------------------")
-        end_date, n_failures = block(T, 
-              experiment_folder=experiment_folder, 
-              reloader_folder=reloader_folder,
-              run_physic=True,
-              list_of_vars=list_of_vars,
-              save_restart_path=restarts_folder,
-              save_history_folder=f'{output_prefix}/Inputs')
-        tot_failures+=n_failures    
-        print("-------------------------- Run No Physic--------------------------")
-        end_date, n_failures = block(T=datetime.timedelta(seconds=heart_beat_dt),
-              experiment_folder=experiment_folder, 
-              reloader_folder=restarts_folder,
-              run_physic=False,
-              list_of_vars=list_of_vars,
-              save_restart_path=False,
-              save_history_folder=f'{output_prefix}/Outputs_nophys')
-        tot_failures+=n_failures
-
-        print("-------------------------- Run Physic-----------------------------")
-        end_date, n_failures = block(T=datetime.timedelta(seconds=heart_beat_dt), 
+        print("-------------------------- Run Physic -----------------------------")
+        # Here we try 15 min and not 7.5
+        delta_steps = heart_beat_dt * 2
+        end_date, n_failures = block(T=datetime.timedelta(seconds = delta_steps), 
               experiment_folder=experiment_folder, 
               reloader_folder=restarts_folder,
               run_physic=True,

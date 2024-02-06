@@ -1,10 +1,13 @@
 # DATA :
 *.yaml
 *.rc
-
+logs/
 *cap_restart
 *._*
+*.swp
 
 # PYTHON :
 __pycache__
 *.ipynb
+*.log
+*.DS_Store

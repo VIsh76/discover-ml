@@ -18,6 +18,7 @@ def main(input_file, output_file):
         input_path (str): file where HISTORY.rc save variables
         output_path (str): file directory 
         list_of_vars (list of str): variables from HISTORY.rc files.
+    Returns : 0 if success 1 if failures to find the file
     """
     output_folder = os.path.dirname(output_file)
     if not os.path.exists(output_folder):
@@ -28,4 +29,8 @@ def main(input_file, output_file):
         os.rename(input_file, output_file)
         print("- successful - ")
     else:
+        print(f"File {input_file} not found - skip can't copy to {output_file}")
         warnings.warn(f"File {input_file} not found - skip can't copy to {output_file}")
+        assert(False)
+        return 1
+    return 0
