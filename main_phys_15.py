@@ -28,8 +28,8 @@ cap_rc_path = f"{experiment_folder}/CAP.rc"
 list_of_vars = ['ml_input', 'ml_output']
 ## Heart_beat
 heart_beat_dt = 450
-max_runs = 195 # about two days with 15 min, 1 with 7
-output_prefix = '../ML_DATA/latlon_test_2' # where the data is saved
+max_runs = 100 # about two days with 15 min, 1 with 7
+output_prefix = '../ML_DATA/latlon_15' # where the data is saved
 
 def format_history_path(intial_folder, save_folder, end_date, var):
     return f"{intial_folder}/{save_folder}/{var}/{end_date.strftime('%Y%m')}/{experiment_name}.{var}.{end_date.strftime('%Y%m%d_%H%Mz')}.nc4"

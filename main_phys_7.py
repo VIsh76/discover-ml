@@ -29,7 +29,7 @@ list_of_vars = ['ml_input', 'ml_output']
 ## Heart_beat
 heart_beat_dt = 450
 max_runs = 195 # about two days with 15 min, 1 with 7
-output_prefix = '../ML_DATA/latlon_test_2' # where the data is saved
+output_prefix = '../ML_DATA/latlon_7' # where the data is saved
 
 def format_history_path(intial_folder, save_folder, end_date, var):
     return f"{intial_folder}/{save_folder}/{var}/{end_date.strftime('%Y%m')}/{experiment_name}.{var}.{end_date.strftime('%Y%m%d_%H%Mz')}.nc4"
@@ -88,7 +88,7 @@ if __name__ == '__main__':
             reloader_folder = restarts_folder # Otherwise we reload from the restart folder with physics
         print("-------------------------- Run Physic -----------------------------")
         # Here we try 15 min and not 7.5 (heart_beat_dt * 2)
-        delta_steps = heart_beat_dt * 2
+        delta_steps = heart_beat_dt
         end_date, n_failures = block(T=datetime.timedelta(seconds = delta_steps), 
               experiment_folder = experiment_folder, 
               reloader_folder = reloader_folder,

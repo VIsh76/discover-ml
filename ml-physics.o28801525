@@ -1,0 +1,30 @@
+python3.6: can't open file 'main_phy_15s.py': [Errno 2] No such file or directory
+_________________________________________________________________________
+Job Resource Usage Summary for 28801525
+
+  Job Ended                       : Fri Feb  9 21:32:47 EST 2024
+
+  Partition                       : compute
+  Head Node                       : borgi002
+  Charged to                      : g0613
+
+  Estimated SBUs                  : 0
+
+  Total Mem Requested / Allocated : 742.18G / 742.18G
+  Max Real Mem Used (on any node) : 0.00G
+  Max Pct Memory Used             : 0.00%
+
+  Walltime Requested              : 08:00:00
+  Walltime Used                   : 00:00:03
+  Pct Walltime Used               : .01%
+
+  CPUs Requested / Allocated      : 160 / 184
+  Total CPU-Time Allocated        : 00:09:12 (Walltime Used * #CPUs)
+
+  CPU Utilization of __whole job__:
+  User CPU                        : 00:00.071 of 00:02:18
+  System CPU                      : 00:00.023 of 00:02:18
+  Pct CPU Utilization             : 0%
+  (Whole-job utilization data may be inaccurate; prefix your most important command with 'srun' for best insight.)
+_________________________________________________________________________
+

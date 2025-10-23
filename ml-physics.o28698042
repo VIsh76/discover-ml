@@ -1,0 +1,31 @@
+main_phys.py:82: UserWarning: HISTORY.rc file date must have '%Y%m%d %H%M%S' format
+  warnings.warn("HISTORY.rc file date must have '%Y%m%d %H%M%S' format")
+_________________________________________________________________________
+Job Resource Usage Summary for 28698042
+
+  Job Ended                       : Wed Feb  7 03:48:25 EST 2024
+
+  Partition                       : compute
+  Head Node                       : borgi001
+  Charged to                      : g0613
+
+  Estimated SBUs                  : 13.89
+
+  Total Mem Requested / Allocated : 742.18G / 742.18G
+  Max Real Mem Used (on any node) : 28.05G
+  Max Pct Memory Used             : 3.77%
+
+  Walltime Requested              : 08:00:00
+  Walltime Used                   : 01:57:46
+  Pct Walltime Used               : 24.53%
+
+  CPUs Requested / Allocated      : 160 / 184
+  Total CPU-Time Allocated        : 15-01:09:04 (Walltime Used * #CPUs)
+
+  CPU Utilization of __last hydra_bstrap_proxy cmd only__:
+  User CPU                        : 54:02.295 of 01:32:00
+  System CPU                      : 02:27.523 of 01:32:00
+  Pct CPU Utilization             : 46.04%
+  
+_________________________________________________________________________
+

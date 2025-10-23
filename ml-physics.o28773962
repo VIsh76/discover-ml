@@ -1,0 +1,32 @@
+python3.6: can't open file 'main_phy_15s.py': [Errno 2] No such file or directory
+main_phys_7.py:82: UserWarning: HISTORY.rc file date must have '%Y%m%d %H%M%S' format
+  warnings.warn("HISTORY.rc file date must have '%Y%m%d %H%M%S' format")
+_________________________________________________________________________
+Job Resource Usage Summary for 28773962
+
+  Job Ended                       : Fri Feb  9 07:37:52 EST 2024
+
+  Partition                       : compute
+  Head Node                       : borgi171
+  Charged to                      : g0613
+
+  Estimated SBUs                  : 25.54
+
+  Total Mem Requested / Allocated : 742.18G / 742.18G
+  Max Real Mem Used (on any node) : 28.05G
+  Max Pct Memory Used             : 3.77%
+
+  Walltime Requested              : 08:00:00
+  Walltime Used                   : 03:36:34
+  Pct Walltime Used               : 45.11%
+
+  CPUs Requested / Allocated      : 160 / 184
+  Total CPU-Time Allocated        : 27-16:08:16 (Walltime Used * #CPUs)
+
+  CPU Utilization of __last hydra_bstrap_proxy cmd only__:
+  User CPU                        : 51:36.355 of 01:27:24
+  System CPU                      : 02:25.678 of 01:27:24
+  Pct CPU Utilization             : 46.35%
+  
+_________________________________________________________________________
+

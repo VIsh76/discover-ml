@@ -8,5 +8,7 @@
 #SBATCH --nodes=4
 #SBATCH --time=08:00:00
 
-python3.6 main_phy_15s.py > run_phys_20240209_15.log
-#python3.6 main_phys_7.py > run_phys_20240209_7.log
+python3.6 main.py
+
+salloc --account g0613 ---partition=gpu_a100 --constraint=rome -job-name=test_ml_gpu --qos=debug --time=00:30:00
+
